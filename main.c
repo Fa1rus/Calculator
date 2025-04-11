@@ -10,48 +10,57 @@ float divide(float a, float b);
 
 int main(){
     float x, y, result;
-    char operator;
-    char again; // <- to ask if user wants to continue
+    int choice;  //lessier variable
 
     do{ 
+    //Menu Display
+    printf("\n===== Simple Calculator =====\n");
+    printf("1. Add(+)\n");
+    printf("2. Subtract(-)\n");
+    printf("3. Multiply(x)\n");
+    printf("4. Divide(÷)");
+    printf("0. Exit\n");
+    printf("Choose your operation (0-4): ");
+    scanf("%d", &choice);
+    
+    //If user put 0 program will end
+    if (choice==0)
+    {
+        printf("Thank for using Simple calculator!\n");
+        break;
+    }
+    // input numbers
     printf("Enter your first number: ");
     scanf("%f", &x);
-    printf("Enter operator(+, -, *, /): ");
-    scanf(" %c", &operator);                // space before %c is important!
-    printf("Enter second number: ");
+    printf("Enter your second number: ");
     scanf("%f", &y);
 
-    switch (operator)
+    // Operation (Which choice user iput)
+    switch (choice)
     {
-    case '+':
+    case 1:
         result = add(x, y);
         printf("%.2f + %.2f = %.2f\n", x, y, result);
         break;
-    case '-':
+    case 2:
         result = subtract(x,y);
         printf("%.2f - %.2f = %.2f\n", x, y, result);
         break;
-    case '*':
+    case 3:
         result = multiply(x,y);
         printf("%.2f * %.2f = %.2f\n", x, y, result);
         break;
-    case '/':
+    case 4:
         result = divide(x,y);
         if (y != 0){
             printf("%.2f / %.2f = %.2f\n",x,y,result);
         }
         break;
     default:
-        printf("Invalid operator input!\n");
+        printf("⚠️Invalid operator input!\n");
     }
-    // ask if user wanna do another calculattion
-    printf("Do you want to calculate again?(y/n): ");
-    scanf(" %c", &again);
-    } while (again == 'y' || again == 'Y');
-    {
-        printf("Thanks for using the calculator! Bye\n");
-    }
-    
+
+    } while (1);     
 
     return 0;    
 }
