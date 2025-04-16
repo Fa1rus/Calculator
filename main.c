@@ -1,5 +1,4 @@
 #include<stdio.h>
-#include<math.h>
 #include<string.h>
 
 // Function declarations
@@ -31,7 +30,7 @@ int main(){
     //If user put 0 program will end
     if (choice==0)
     {
-        printf("Thank for using Simple calculator!\n");
+        printf("Thanks for using Ssmple Calculator!\n");
         break;
     }
 
@@ -60,13 +59,14 @@ int main(){
         if (fptr)
         {
             fprintf(fptr, "%d. %.2f + %.2f = %.2f\n",count+1,x,y,result);
+            count++;
             fclose(fptr);
         } else {
-            printf("Error openning file for writing!\n");
+            printf("Error opening file for writing!\n");
         }
         break;
     case 2:
-        result = add(x, y);
+        result = subtract(x, y);
         printf("%.2f - %.2f = %.2f\n", x, y, result);
         sprintf(history[count], "%.2f - %.2f = %.2f", x,y,result);
 
@@ -74,14 +74,15 @@ int main(){
         fptr = fopen("History.txt", "a");
         if (fptr)
         {
-            fprintf(fptr, "%d. %.2f + %.2f = %.2f\n",count+1,x,y,result);
+            fprintf(fptr, "%d. %.2f - %.2f = %.2f\n",count+1,x,y,result);
+            count++;
             fclose(fptr);
         } else {
-            printf("Error openning file for writing!\n");
+            printf("Error opening file for writing!\n");
         }
         break;
     case 3:
-        result = add(x, y);
+        result = multiply(x, y);
         printf("%.2f * %.2f = %.2f\n", x, y, result);
         sprintf(history[count], "%.2f * %.2f = %.2f", x,y,result);
 
@@ -89,24 +90,26 @@ int main(){
         fptr = fopen("History.txt", "a");
         if (fptr)
         {
-            fprintf(fptr, "%d. %.2f + %.2f = %.2f\n",count+1,x,y,result);
+            fprintf(fptr, "%d. %.2f * %.2f = %.2f\n",count+1,x,y,result);
+            count++;
             fclose(fptr);
         } else {
-            printf("Error openning file for writing!\n");
+            printf("Error opening file for writing!\n");
         }
         break;
    case 4:
         result = divide(x,y);
         if (y != 0){
             printf("%.2f / %.2f = %.2f\n",x,y,result);
-            sprintf(history[count++], "%.2f / %.2f = %.2f", x,y,result);
+            sprintf(history[count], "%.2f / %.2f = %.2f", x,y,result);
             
             fptr = fopen("History.txt", "a");
             if (fptr){
-                fprintf(fptr, "%d. %.2f / %.2f = %.2f\n",count++,y,result);
+                fprintf(fptr, "%d. %.2f / %.2f = %.2f\n",count+1,y,result);
+                count++;
                 fclose(fptr);
             } else {
-                printf("Error openning file for writing!\n");
+                printf("Error opening file for writing!\n");
             }
         } else {
             printf("Can not divide by 0.\n");
@@ -126,6 +129,7 @@ int main(){
     case 6:
         printf("\n===== History from file =====\n");
         char fhistory[100];
+        fptr = fopen("History.txt", "r");
         if (fptr)
         {
             while (fgets(fhistory,100,fptr)){
@@ -133,7 +137,7 @@ int main(){
             }
             fclose(fptr);
         } else {
-            printf("Erroe openning file to read.\n");
+            printf("Error opening file to reading.\n");
         }
         break;
     default:
