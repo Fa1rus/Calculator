@@ -22,7 +22,7 @@ int main(){
     printf("3. Multiply(x)\n");
     printf("4. Divide(÷)\n");
     printf("5. View history\n");
-    printf("6. View history from file");
+    printf("6. View history from file\n");
     printf("0. Exit\n");
     printf("Choose your operation (0-6): ");
     scanf("%d", &choice);
@@ -105,7 +105,7 @@ int main(){
             
             fptr = fopen("History.txt", "a");
             if (fptr){
-                fprintf(fptr, "%d. %.2f / %.2f = %.2f\n",count+1,y,result);
+                fprintf(fptr, "%d. %.2f / %.2f = %.2f\n",count+1,x,y,result);
                 count++;
                 fclose(fptr);
             } else {
