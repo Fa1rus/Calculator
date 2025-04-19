@@ -31,7 +31,7 @@ int main(){
     //If user put 0 program will end
     if (choice==0)
     {
-        printf("Thanks for using Ssmple Calculator!\n");
+        printf("Thanks for using Simple Calculator!\n");
         break;
     }
 
@@ -58,13 +58,12 @@ int main(){
         //use function to save to file
         save_to_file(count, history[count]);
         count++;
-           case 2:
+    case 2:
         result = subtract(x, y);
         printf("%.2f - %.2f = %.2f\n", x, y, result);
         sprintf(history[count], "%.2f - %.2f = %.2f", x,y,result);
         save_to_file(count, history[count]);
         count++;
-
     case 3:
         result = multiply(x, y);
         printf("%.2f * %.2f = %.2f\n", x, y, result);
@@ -133,7 +132,7 @@ float divide(float a, float b) {
 void save_to_file(int count, char *expression){
     FILE *fptr =fopen("History.txt", "a");
     if (fptr) {
-        fprintf(fptr, "d. %s\n", count+1,expression);
+        fprintf(fptr, "%d. %s\n", count+1,expression);
         fclose(fptr);
     } else {
         printf("Error opening file for writing!\n");
