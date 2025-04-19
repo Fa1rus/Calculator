@@ -58,25 +58,28 @@ int main(){
         //use function to save to file
         save_to_file(count, history[count]);
         count++;
+        break;
     case 2:
         result = subtract(x, y);
         printf("%.2f - %.2f = %.2f\n", x, y, result);
         sprintf(history[count], "%.2f - %.2f = %.2f", x,y,result);
         save_to_file(count, history[count]);
         count++;
+        break;
     case 3:
         result = multiply(x, y);
         printf("%.2f * %.2f = %.2f\n", x, y, result);
         sprintf(history[count], "%.2f * %.2f = %.2f", x,y,result);
         save_to_file(count, history[count]);
         count++;
-
+        break;
    case 4:
         result = divide(x,y);
         printf("%.2f / %.2f = %.2f\n",x,y,result);
         sprintf(history[count], "%.2f / %.2f = %.2f", x,y,result);
         save_to_file(count, history[count]);
         count++;
+        break;
     case 5:
         printf("\n===== History =====\n");
         if (count == 0) {
