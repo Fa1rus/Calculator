@@ -6,6 +6,7 @@ float add(float a, float b);
 float subtract(float a, float b);
 float multiply(float a, float b);
 float divide(float a, float b);
+void save_to_file(int count, char *expression);
 
 
 int main(){
@@ -54,63 +55,29 @@ int main(){
         printf("%.2f + %.2f = %.2f\n", x, y, result);
         sprintf(history[count], "%.2f + %.2f = %.2f", x,y,result);
 
-        //New: Save to file
-        fptr = fopen("History.txt", "a");
-        if (fptr)
-        {
-            fprintf(fptr, "%d. %.2f + %.2f = %.2f\n",count+1,x,y,result);
-            count++;
-            fclose(fptr);
-        } else {
-            printf("Error opening file for writing!\n");
-        }
-        break;
-    case 2:
+        //use function to save to file
+        save_to_file(count, history[count]);
+        count++;
+           case 2:
         result = subtract(x, y);
         printf("%.2f - %.2f = %.2f\n", x, y, result);
         sprintf(history[count], "%.2f - %.2f = %.2f", x,y,result);
+        save_to_file(count, history[count]);
+        count++;
 
-        //New: Save to file
-        fptr = fopen("History.txt", "a");
-        if (fptr)
-        {
-            fprintf(fptr, "%d. %.2f - %.2f = %.2f\n",count+1,x,y,result);
-            count++;
-            fclose(fptr);
-        } else {
-            printf("Error opening file for writing!\n");
-        }
-        break;
     case 3:
         result = multiply(x, y);
         printf("%.2f * %.2f = %.2f\n", x, y, result);
         sprintf(history[count], "%.2f * %.2f = %.2f", x,y,result);
+        save_to_file(count, history[count]);
+        count++;
 
-        //New: Save to file
-        fptr = fopen("History.txt", "a");
-        if (fptr)
-        {
-            fprintf(fptr, "%d. %.2f * %.2f = %.2f\n",count+1,x,y,result);
-            count++;
-            fclose(fptr);
-        } else {
-            printf("Error opening file for writing!\n");
-        }
-        break;
    case 4:
         result = divide(x,y);
         printf("%.2f / %.2f = %.2f\n",x,y,result);
         sprintf(history[count], "%.2f / %.2f = %.2f", x,y,result);
-            
-        fptr = fopen("History.txt", "a");
-            if (fptr){
-                fprintf(fptr, "%d. %.2f / %.2f = %.2f\n",count+1,x,y,result);
-                count++;
-                fclose(fptr);
-            } else {
-                printf("Error opening file for writing!\n");
-            }
-        break;
+        save_to_file(count, history[count]);
+        count++;
     case 5:
         printf("\n===== History =====\n");
         if (count == 0) {
@@ -161,5 +128,14 @@ float divide(float a, float b) {
     else {
         printf("Error: Cannot divide by zero!\n");
         return 0; // return 0 just to avoid crash
+    }
+}
+void save_to_file(int count, char *expression){
+    FILE *fptr =fopen("History.txt", "a");
+    if (fptr) {
+        fprintf(fptr, "d. %s\n", count+1,expression);
+        fclose(fptr);
+    } else {
+        printf("Error opening file for writing!\n");
     }
 }
